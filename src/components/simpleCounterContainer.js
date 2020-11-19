@@ -6,10 +6,10 @@ const  simpleCounterContainer = (props) => {
     const handleClick = (type, event) => {
         switch (type) {
             case "inr":
-                props.incrementSimpleCounterActionCreator();
+                props.decrementSimpleCounterActionCreator();
                 break;
             case "dcr":
-                props.decrementSimpleCounterActionCreator();
+                props.incrementSimpleCounterActionCreator();
                 break;
             default:
                 return;
@@ -17,7 +17,7 @@ const  simpleCounterContainer = (props) => {
     };
     return (
         <>
-            <p>{props.counter}</p>
+            <p>{props.xyz} {props.myCounter}</p>
             <button onClick={(event) => {handleClick("inr", event)}}>increment</button>
             <button onClick={(event) => {handleClick("dcr", event)}}>decrement</button>
         </>
@@ -25,11 +25,13 @@ const  simpleCounterContainer = (props) => {
 };
 const mapStateToProps = (state) => {
     return {
-        counter: state.simpleCounter.counter
+        myCounter: state.simpleCounter.counter,
+        xyz: "hello"
     }
 };
 
 export default connect(mapStateToProps, {
-    decrementSimpleCounterActionCreator,
-    incrementSimpleCounterActionCreator
-})(simpleCounterContainer);
+        decrementSimpleCounterActionCreator,
+        incrementSimpleCounterActionCreator
+    }
+)(simpleCounterContainer);
