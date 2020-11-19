@@ -1,23 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const  customCounterContainer = (props) => {
-    const handleClick = (type, event) => {
-        switch (type) {
-            case "inr":
-                break;
-            case "dcr":
-                break;
-            default:
-                return;
-        }
+const  CustomCounterContainer = (props) => {
+    const [inputCounter, setInputCounter] = useState(0);
+    const handleClick = (event) => {
+
     };
     return (
         <>
             <p>{props.counter}</p>
-            <button onClick={(event) => {handleClick("inr", event)}}>increment</button>
-            <button onClick={(event) => {handleClick("dcr", event)}}>decrement</button>
+            <textarea
+                onChange={(event)=> {setInputCounter(event.target.value)}}
+                value={inputCounter}
+            />
+            <button onClick={(event) => {handleClick(event)}}>submit</button>
         </>
     )
 };
 
-export default customCounterContainer;
+export default CustomCounterContainer;

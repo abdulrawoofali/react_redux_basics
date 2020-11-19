@@ -1,20 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {connect} from "react-redux";
+import {decrementSimpleCounterActionCreator, incrementSimpleCounterActionCreator} from '../redux/simpleCounter/actionCreator';
 
-const  customCounterContainer = (props) => {
-    const [inputCounter, setInputCounter] = useState(0);
-    const handleClick = (event) => {
-
+const  simpleCounterContainer = (props) => {
+    const handleClick = (type, event) => {
+        switch (type) {
+            case "inr":
+                props.incrementSimpleCounterActionCreator();
+                break;
+            case "dcr":
+                props.decrementSimpleCounterActionCreator();
+                break;
+            default:
+                return;
+        }
     };
     return (
         <>
             <p>{props.counter}</p>
-            <textarea
-                onChange={(event)=> {setInputCounter(event.target.value)}}
-                value={inputCounter}
-            />
-            <button onClick={(event) => {handleClick(event)}}>submit</button>
+            <button onClick={(event) => {handleClick("inr", event)}}>increment</button>
+            <button onClick={(event) => {handleClick("dcr", event)}}>decrement</button>
         </>
     )
 };
+const mapStateToProps = (state) => {
+    return {
+        counter: state.simpleCounter.counter
+    }
+};
 
-export default customCounterContainer;
+export default connect(mapStateToProps, {
+    decrementSimpleCounterActionCreator,
+    incrementSimpleCounterActionCreator
+})(simpleCounterContainer);
