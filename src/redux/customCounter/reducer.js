@@ -8,7 +8,7 @@ export default (state = INIT_STATE, action) => {
     switch (action.type) {
         case INCREMENT_CUSTOM_AMOUNT: {
             return {
-
+                multipleCounter: state.multipleCounter + action.payload
             }
         }
         default:

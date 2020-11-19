@@ -17,7 +17,7 @@ const  simpleCounterContainer = (props) => {
     };
     return (
         <>
-            <p>{props.xyz} {props.myCounter}</p>
+            <p>{props.myCounter}</p>
             <button onClick={(event) => {handleClick("inr", event)}}>increment</button>
             <button onClick={(event) => {handleClick("dcr", event)}}>decrement</button>
         </>
@@ -25,8 +25,7 @@ const  simpleCounterContainer = (props) => {
 };
 const mapStateToProps = (state) => {
     return {
-        myCounter: state.simpleCounter.counter,
-        xyz: "hello"
+        myCounter: state.simpleCounter.counter
     }
 };
 

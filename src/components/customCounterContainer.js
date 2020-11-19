@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import {connect} from "react-redux";
+import {multipleCounterIncrementActionCreator} from '../redux/customCounter/actionCreator'
 
 const  CustomCounterContainer = (props) => {
     const [inputCounter, setInputCounter] = useState(0);
     const handleClick = (event) => {
-
+        props.multipleCounterIncrementActionCreator(parseInt(inputCounter, 10));
     };
     return (
         <>
@@ -17,4 +19,12 @@ const  CustomCounterContainer = (props) => {
     )
 };
 
-export default CustomCounterContainer;
+const mapStateToProps = (state) => {
+    return {
+        counter: state.multipleCounterReducer.multipleCounter
+    }
+};
+
+export default connect(mapStateToProps, {
+    multipleCounterIncrementActionCreator
+})(CustomCounterContainer);
